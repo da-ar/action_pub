@@ -1,0 +1,17 @@
+name: raise_event
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Dispatch
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.publish_token }}
+        repository: da-ar/action_sub
+        event-type: new-commit
